@@ -1,16 +1,25 @@
 package piscine
 
 func LastWord(s string) string {
-	word := ""
-	start := false
+	start := -1
+	end := -1
 
+	// Step 1: Loop backward to find the end index of the last word
 	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != ' ' && end == -1 {
+			end = i + 1
+		}
 		if s[i] != ' ' {
-			word = string(s[i]) + word
-			start = true
-		} else if start {
+			start = i
+		}
+		if s[i] == ' ' && end != -1 {
 			break
 		}
 	}
-	return word + "\n"
+
+	if start == -1 || end == -1 {
+		return "\n" // no word found
+	}
+
+	return s[start:end] + "\n"
 }
