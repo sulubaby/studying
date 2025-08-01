@@ -1,15 +1,14 @@
 package piscine
 
-func Firstword (s string) strimg {
-	result := ""
-	for _, v := range s {
-		if v == ' '{
-			if len(result) != 0 {
-				break
-			}
-		} else {
-			result += string(v)
-		}
-	}
-	return result
+func FirstWord(s string) string {
+start := 0
+for start < len(s) && s[start] == ' '{
+    start++
+}
+end := start 
+
+for end < len(s) && s[end] != ' ' {
+    end++
+}
+return s[start:end] + "\n"
 }
